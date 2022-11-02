@@ -1,5 +1,4 @@
 import random
-from re import L
 import pygame
 import queue
 
@@ -10,8 +9,8 @@ class Snake():
         self.height = height
         self.width = width
         self.grid_width = grid_width
+        self.color = (255, 0, 0)
         self.x, self.y = random.choice(range(0, self.height, self.grid_width)), random.choice(range(0, self.width, self.grid_width))
-        # self.snake.put(pygame.Rect(random.choice(range(0, height, grid_width)), random.choice(range(0, width, grid_width)), grid_width, grid_width))
         self.direction = random.choice(['LEFT', 'RIGHT', 'UP', 'DOWN'])
     
     def move_snake(self,direction):
@@ -24,6 +23,12 @@ class Snake():
     def grow_snake(self,):
         pass
 
+    def draw_snake_blob(self, background):
+        old, new = self.plot_snake()
+        pygame.draw.rect(background, self.color, new)
+        pygame.draw.rect(background, (0,0,0), old)
+
+        return new
 
     def plot_snake(self):
         if not self.snake.empty():
@@ -46,29 +51,16 @@ class Snake():
         
         self.x, self.y = self.x + x * self.grid_width, self.y + y * self.grid_width
 
-        if self.x > self.height:
+        if self.x > self.height-self.grid_width:
             self.x = 0
         elif self.x < 0:
-            self.x = self.height
+            self.x = self.height-self.grid_width
 
-        if self.y > self.width:
+        if self.y > self.width-self.grid_width:
             self.y = 0
         elif self.y < 0:
-            self.y = self.width
+            self.y = self.width-self.grid_width
 
         new_location = pygame.Rect(self.x, self.y, self.grid_width, self.grid_width)
         self.snake.put(new_location)
         return old_location, new_location
-        # pygame.draw.rect(self.a1.get_screen_object()[0], self.color, snake_head)
-
-        # self.a1.get_screen_object()[1].blit(self.a1.get_screen_object()[0], (0,0))
-
-
-# if __name__ == '__main__':
-#     # a1 = Arena(1000, 500)
-#     snake = Snake()
-#     while True:
-#         snake.a1.refresh_screen()
-#         snake.a1.draw_grid()
-#         snake.draw_snake()
-#         snake.a1.tick_clock()
