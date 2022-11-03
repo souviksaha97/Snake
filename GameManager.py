@@ -23,6 +23,10 @@ class GameManager():
         self.food_flag = False
 
         self.food_coords = (0,0)
+
+        self.tick_counter = 0
+
+        self.score = 1
     
     def get_random_coordinates(self):
         return random.choice(range(0, self.height, self.grid_width)), random.choice(range(0, self.width, self.grid_width))
@@ -38,6 +42,7 @@ class GameManager():
         return pygame.Rect.colliderect(head_blob, food_blob)
     
     def get_key_input(self):
+
         keys = pygame.key.get_pressed()
         if keys[pygame.K_UP]:
             self.snake.move_snake('UP')
@@ -47,10 +52,12 @@ class GameManager():
             self.snake.move_snake('LEFT')
         elif keys[pygame.K_RIGHT]:
             self.snake.move_snake('RIGHT')
-        elif keys[pygame.K_q]:
+        elif keys[pygame.K_q] and self.tick_counter % 2 == 0:
             self.grid_flag = not self.grid_flag
             self.arena.clear_grid(self.background)
             self.arena.draw_food(self.food_coords, self.background)
+
+        self.tick_counter+=1
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -70,11 +77,13 @@ class GameManager():
             else:
                 if self.check_collision(head_blob, food_blob):
                     self.food_flag = False
+                    self.score += 1
+                    self.snake.grow_snake()
             self.get_key_input()
             self.tick_clock()
 
             
 
 if __name__ == '__main__':
-    game = GameManager(500, 500)
+    game = GameManager(400, 400)
     game.mainloop()
