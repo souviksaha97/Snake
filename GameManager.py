@@ -8,7 +8,7 @@ pygame.init()
 
 
 class GameManager():
-    def __init__(self, height, width, grid_width = 10, frame_rate = 10):
+    def __init__(self, height, width, grid_width = 20, frame_rate = 10):
         self.height = height
         self.width = width
         self.grid_width = grid_width
@@ -38,8 +38,6 @@ class GameManager():
         self.surface.blit(self.background, (0,0))
         pygame.display.update()
 
-    def check_collision(self, head_blob, food_blob):
-        return pygame.Rect.colliderect(head_blob, food_blob)
     
     def get_key_input(self):
 
@@ -68,6 +66,11 @@ class GameManager():
         while True:
             self.refresh_screen()
             head_blob = self.snake.draw_snake_blob(self.background)
+            if not head_blob:
+                pygame.quit()
+                print('Game Over')
+                sys.exit()
+
             if self.grid_flag:
                 self.arena.draw_grid(self.background)
             if not self.food_flag:
@@ -75,15 +78,16 @@ class GameManager():
                 food_blob = self.arena.draw_food(self.food_coords, self.background)
                 self.food_flag = True
             else:
-                if self.check_collision(head_blob, food_blob):
+                if self.snake.check_food_collision(head_blob, food_blob):
                     self.food_flag = False
                     self.score += 1
                     self.snake.grow_snake()
+                
             self.get_key_input()
             self.tick_clock()
 
             
 
 if __name__ == '__main__':
-    game = GameManager(400, 400)
+    game = GameManager(1800, 1000)
     game.mainloop()

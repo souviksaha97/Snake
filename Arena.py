@@ -20,8 +20,8 @@ class Arena():
         end_vertical = [(i, self.width) for i in range(self.grid_width, self.height, self.grid_width)]
 
         for i in range(int(self.height/self.grid_width - 1)):
-            pygame.draw.line(background, (255, 255, 255), start_horizontal[i], end_horizontal[i])
-            pygame.draw.line(background, (255, 255, 255), start_vertical[i], end_vertical[i])
+            pygame.draw.line(background, (128, 128, 128), start_horizontal[i], end_horizontal[i])
+            pygame.draw.line(background, (128, 128, 128), start_vertical[i], end_vertical[i])
         
     def clear_grid(self, background):
         background.fill((0, 0, 0))

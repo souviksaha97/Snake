@@ -26,11 +26,13 @@ class Snake():
         self.length += 1
         self.snake.append((None, self.length-1))
 
-    def draw_snake_blob(self, background):
-        # next_blob, head_blob = self.plot_snake()
-        # pygame.draw.rect(background, self.color, new)
-        # pygame.draw.rect(background, (0,0,0), old)
+    def check_food_collision(self, head_blob, food_blob):
+        return pygame.Rect.colliderect(head_blob, food_blob)
+    
+    def check_self_collision(self, blob):
+        return blob[0].collidelist([i[0] for i in self.snake[1:]])
 
+    def draw_snake_blob(self, background):
 
         for i in reversed(range(self.length)):
             old_blob = self.snake[i]
@@ -40,6 +42,9 @@ class Snake():
             if old_blob[0] is not None and old_blob[1] == self.length-1:
                 pygame.draw.rect(background, (0,0,0), old_blob[0])
         
+        if self.check_self_collision(self.snake[HEAD]) is not -1:
+            return False
+
         return self.snake[HEAD][0]
 
 
@@ -77,7 +82,5 @@ class Snake():
             new_location = (pygame.Rect(new_x, new_y, self.grid_width, self.grid_width), HEAD)
         else:
             new_location = (self.snake[blob[1]-1][0], blob[1])
-
-        print(new_location, self.direction, len(self.snake))
 
         return new_location
