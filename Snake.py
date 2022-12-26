@@ -1,11 +1,12 @@
 import random
 import pygame
+import variables
 
 HEAD = 0
 
 class Snake():
     def __init__(self, height, width, grid_width):
-        self.color = (255, 0, 0)
+        self.color = variables.snake_color
         self.height = height
         self.width = width
         self.grid_width = grid_width
@@ -38,11 +39,23 @@ class Snake():
             old_blob = self.snake[i]
             new_blob = self.plot_snake(old_blob)
             self.snake[i] = new_blob
-            pygame.draw.rect(background, self.color, new_blob[0])
+            if new_blob[1] == HEAD:
+                if self.direction == 'LEFT':
+                    pygame.draw.rect(background, self.color, new_blob[0], border_bottom_left_radius=self.grid_width//2, border_top_left_radius=self.grid_width//2)
+                elif self.direction == 'RIGHT':
+                    pygame.draw.rect(background, self.color, new_blob[0], border_bottom_right_radius=self.grid_width//2, border_top_right_radius=self.grid_width//2)
+                elif self.direction == 'UP':
+                    pygame.draw.rect(background, self.color, new_blob[0], border_top_left_radius=self.grid_width//2, border_top_right_radius=self.grid_width//2)
+                else:
+                    pygame.draw.rect(background, self.color, new_blob[0], border_bottom_left_radius=self.grid_width//2, border_bottom_right_radius=self.grid_width//2)
+            
+            else:
+                pygame.draw.rect(background, self.color, new_blob[0])
+            
             if old_blob[0] is not None and old_blob[1] == self.length-1:
-                pygame.draw.rect(background, (0,0,0), old_blob[0])
+                pygame.draw.rect(background, variables.background_color, old_blob[0])
         
-        if self.check_self_collision(self.snake[HEAD]) is not -1:
+        if self.check_self_collision(self.snake[HEAD]) != -1:
             return False
 
         return self.snake[HEAD][0]

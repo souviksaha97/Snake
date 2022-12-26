@@ -1,4 +1,5 @@
 import pygame
+import variables
 
 class Arena():
     def __init__(self, height, width, grid_width):
@@ -8,7 +9,8 @@ class Arena():
         
     def draw_food(self, coords, background):
         food_blob = pygame.Rect(coords[0], coords[1], self.grid_width, self.grid_width)
-        pygame.draw.rect(background, (0, 255, 0), food_blob)
+        pygame.draw.circle(background, variables.food_color, (coords[0]+self.grid_width//2, coords[1]+self.grid_width//2), self.grid_width//2-0.5)
+        
         return food_blob
 
 
@@ -20,9 +22,9 @@ class Arena():
         end_vertical = [(i, self.width) for i in range(self.grid_width, self.height, self.grid_width)]
 
         for i in range(int(self.height/self.grid_width - 1)):
-            pygame.draw.line(background, (128, 128, 128), start_horizontal[i], end_horizontal[i])
-            pygame.draw.line(background, (128, 128, 128), start_vertical[i], end_vertical[i])
+            pygame.draw.line(background, variables.grid_color, start_horizontal[i], end_horizontal[i])
+            pygame.draw.line(background, variables.grid_color, start_vertical[i], end_vertical[i])
         
     def clear_grid(self, background):
-        background.fill((0, 0, 0))
+        background.fill(variables.background_color)
 

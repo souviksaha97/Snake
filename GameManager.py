@@ -3,6 +3,7 @@ import sys
 import Snake
 import Arena
 
+import variables
 import random
 pygame.init()
 
@@ -59,6 +60,7 @@ class GameManager():
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                pygame.mixer.Sound.play(variables.snake_dead_sound)
                 pygame.quit()
                 sys.exit()
 
@@ -82,6 +84,7 @@ class GameManager():
                     self.food_flag = False
                     self.score += 1
                     self.snake.grow_snake()
+                    pygame.mixer.Sound.play(variables.snake_eats_sound)
                 
             self.get_key_input()
             self.tick_clock()
@@ -89,5 +92,5 @@ class GameManager():
             
 
 if __name__ == '__main__':
-    game = GameManager(1800, 1000)
+    game = GameManager(1000, 1000)
     game.mainloop()
