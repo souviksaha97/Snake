@@ -28,3 +28,8 @@ class Arena():
     def clear_grid(self, background):
         background.fill(variables.background_color)
 
+    def draw_score(self, window, score):
+        text_surf = variables.score_font.render('Score - {}'.format(score), True, variables.text_color, None)
+        text_rect = text_surf.get_rect()
+        text_rect.bottomright = self.height, self.width
+        window.blit(text_surf, text_rect)

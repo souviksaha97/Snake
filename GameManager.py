@@ -9,7 +9,7 @@ pygame.init()
 
 
 class GameManager():
-    def __init__(self, height, width, grid_width = 20, frame_rate = 10):
+    def __init__(self, height, width, grid_width = 25, frame_rate = 10):
         self.height = height
         self.width = width
         self.grid_width = grid_width
@@ -27,7 +27,7 @@ class GameManager():
 
         self.tick_counter = 0
 
-        self.score = 1
+        self.score = 0
     
     def get_random_coordinates(self):
         return random.choice(range(0, self.height, self.grid_width)), random.choice(range(0, self.width, self.grid_width))
@@ -37,6 +37,7 @@ class GameManager():
     
     def refresh_screen(self):
         self.surface.blit(self.background, (0,0))
+        self.arena.draw_score(self.surface, self.score)
         pygame.display.update()
 
     
@@ -60,7 +61,6 @@ class GameManager():
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.mixer.Sound.play(variables.snake_dead_sound)
                 pygame.quit()
                 sys.exit()
 
@@ -69,6 +69,8 @@ class GameManager():
             self.refresh_screen()
             head_blob = self.snake.draw_snake_blob(self.background)
             if not head_blob:
+                pygame.mixer.Sound.play(variables.snake_dead_sound)
+                pygame.time.wait(int(variables.snake_dead_sound.get_length() * 1000))
                 pygame.quit()
                 print('Game Over')
                 sys.exit()
@@ -85,7 +87,9 @@ class GameManager():
                     self.score += 1
                     self.snake.grow_snake()
                     pygame.mixer.Sound.play(variables.snake_eats_sound)
-                
+            
+            
+
             self.get_key_input()
             self.tick_clock()
 
