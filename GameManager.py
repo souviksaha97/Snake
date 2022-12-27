@@ -87,7 +87,7 @@ class GameManager():
                     self.score += 1
                     self.snake.grow_snake()
                     pygame.mixer.Sound.play(variables.snake_eats_sound)
-            
+                    self.frame_rate += 0.5
             
 
             self.get_key_input()
