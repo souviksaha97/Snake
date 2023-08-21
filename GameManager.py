@@ -2,6 +2,7 @@ import pygame
 import sys
 import Snake
 import Arena
+import AudioManager
 
 import variables
 import random
@@ -19,7 +20,7 @@ class GameManager():
         self.background = pygame.Surface(self.surface.get_size())
         self.arena = Arena.Arena(self.height, self.width, self.grid_width)
         self.snake = Snake.Snake(self.height, self.width, self.grid_width)
-
+        self.audio = AudioManager.Audio()
         self.grid_flag = True
         self.food_flag = False
 
@@ -86,15 +87,13 @@ class GameManager():
                     self.food_flag = False
                     self.score += 1
                     self.snake.grow_snake()
-                    pygame.mixer.Sound.play(variables.snake_eats_sound)
-                    self.frame_rate += 0.5
-            
-
+                    self.audio.snake_lvl_up()
+                
             self.get_key_input()
             self.tick_clock()
 
             
 
 if __name__ == '__main__':
-    game = GameManager(1000, 1000)
+    game = GameManager(1280, 720)
     game.mainloop()

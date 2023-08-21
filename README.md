@@ -1,9 +1,9 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
+ <img width=200px height=200px src="files/icon.png" alt="Project logo"></a>
 </p>
 
-<h3 align="center">Project Title</h3>
+<h3 align="center">Snake</h3>
 
 <div align="center">
 
@@ -16,33 +16,21 @@
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> A hobby project developed by Souvik Saha
     <br> 
 </p>
 
-## 📝 Table of Contents
+## 🧐 About
 
-- [About](#about)
-- [Getting Started](#getting_started)
-- [Deployment](#deployment)
-- [Usage](#usage)
-- [Built Using](#built_using)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
-- [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
+The Snake Game is a classic and captivating arcade experience in which players control a snake that slithers around a bordered canvas. The primary objective is to maneuver the snake to consume food items, which causes it to grow longer with each meal. The catch is to avoid colliding with the snake's own tail during this endeavor. As the snake increases in length, the challenge intensifies, demanding strategic planning and swift reactions from players. The absence of walls increases the risk, as the snake can travel off the canvas and reappear on the opposite side. This rendition faithfully recaptures the magic of the original Snake Game, enabling players to immerse themselves in the timeless joy of this iconic pastime.
 
-## 🧐 About <a name = "about"></a>
-
-Basic snake game made using Python
-
-## 🏁 Getting Started <a name = "getting_started"></a>
+## 🏁 Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine.
 
 ### Prerequisites
 
-* Python
+- Python
 
 ### Installing
 
@@ -50,26 +38,16 @@ A step by step series of examples that tell you how to get a development env run
 
 Install requirements.txt
 
-```
+```bash
 pip install -f requirements.txt
 ```
 
+## 🔧 Playing the game
 
-## 🔧 Playing the game <a name = "run"></a>
-
-```
+```bash
 python3 GameManager.py
 ```
 
+## ✍️ Authors
 
-## ✍️ Authors <a name = "authors"></a>
-
-- [@souviksaha97](https://github.com/souviksaha97) - Idea & Initial work
-
-See also the list of [contributors](https://github.com/souviksaha97/Snake/contributors) who participated in this project.
-
-## 🎉 Acknowledgements <a name = "acknowledgement"></a>
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
+- [@souviksaha97](https://github.com/souviksaha97)
