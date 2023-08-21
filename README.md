@@ -20,16 +20,6 @@
     <br> 
 </p>
 
-## 📝 Table of Contents
-
-- [📝 Table of Contents](Table of Contents)
-- [🧐 About](About)
-- [🏁 Getting Started](Getting Started)
-  - [Prerequisites](Prerequisites)
-  - [Installing](Installing)
-- [🔧 Playing the game](Playing the game)
-- [✍️ Authors](#Authors)
-
 ## 🧐 About
 
 The Snake Game is a classic and captivating arcade experience in which players control a snake that slithers around a bordered canvas. The primary objective is to maneuver the snake to consume food items, which causes it to grow longer with each meal. The catch is to avoid colliding with the snake's own tail during this endeavor. As the snake increases in length, the challenge intensifies, demanding strategic planning and swift reactions from players. The absence of walls increases the risk, as the snake can travel off the canvas and reappear on the opposite side. This rendition faithfully recaptures the magic of the original Snake Game, enabling players to immerse themselves in the timeless joy of this iconic pastime.
