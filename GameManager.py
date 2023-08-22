@@ -88,6 +88,7 @@ class GameManager():
                     self.score += 1
                     self.snake.grow_snake()
                     self.audio.snake_lvl_up()
+                    self.frame_rate += 0.5
                 
             self.get_key_input()
             self.tick_clock()
@@ -95,5 +96,5 @@ class GameManager():
             
 
 if __name__ == '__main__':
-    game = GameManager(1280, 720)
+    game = GameManager(500, 500)
     game.mainloop()
